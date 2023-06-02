@@ -24,7 +24,7 @@ public class SurveyAnalyzeInternalController {
     }
 
     // 설문 분석 시작
-    @Cacheable(value = "/research/analyze/create", key = "#id")
+//    @Cacheable(value = "/research/analyze/create", key = "#id")
     @PostMapping(value = "/research/analyze/create")
     public String saveAnalyze(@RequestBody String surveyId) {
         // 설문 분석 -> 저장 (python)

@@ -18,5 +18,9 @@ public class SurveyDetailDto implements Serializable {
     private String description;
     private int countAnswer;
     private List<QuestionDetailDto> questionList;
+    Boolean reliability;
+    String font;
+    int size;
+    String backcolor;
     // getter, setter 생략
 }

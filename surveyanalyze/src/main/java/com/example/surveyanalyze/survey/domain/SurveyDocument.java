@@ -38,12 +38,28 @@ public class SurveyDocument {
     @OneToMany(mappedBy = "surveyDocumentId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<QuestionDocument> questionDocumentList;
 
+    @Column(name = "reliability")
+    private Boolean reliability;
+
+    @Column(name = "font")
+    private String font;
+
+    @Column(name = "size")
+    private int size;
+
+    @Column(name = "backcolor")
+    private String backcolor;
+
 
     @Builder
-    public SurveyDocument(int countAnswer, String title, int type, String description, List<QuestionDocument> questionDocumentList) {
+    public SurveyDocument(int countAnswer, List<SurveyAnswer> surveyAnswerList, String title,Boolean reliability, int type, String description,String font,int size,String backcolor, List<QuestionDocument> questionDocumentList) {
         this.title = title;
         this.type = type;
         this.description = description;
+        this.reliability=reliability;
+        this.font=font;
+        this.backcolor=backcolor;
+        this.size=size;
         this.questionDocumentList = questionDocumentList;
         this.countAnswer = countAnswer;
     }

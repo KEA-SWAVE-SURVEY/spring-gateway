@@ -10,6 +10,8 @@ import com.example.surveyanalyze.survey.repository.compareAnlayze.CompareAnalyze
 import com.example.surveyanalyze.survey.repository.questionAnlayze.QuestionAnalyzeRepository;
 import com.example.surveyanalyze.survey.repository.surveyAnalyze.SurveyAnalyzeRepository;
 import com.example.surveyanalyze.survey.response.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.ResourcePatternUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -433,6 +436,9 @@ public class SurveyAnalyzeService {
         surveyDetailDto.setTitle(surveyDocument.getTitle());
         surveyDetailDto.setDescription(surveyDocument.getDescription());
         surveyDetailDto.setCountAnswer(surveyDocument.getCountAnswer());
+        surveyDetailDto.setFont(surveyDocument.getFont());
+        surveyDetailDto.setSize(surveyDocument.getSize());
+        surveyDetailDto.setBackcolor(surveyDocument.getBackcolor());
 
         List<QuestionDetailDto> questionDtos = new ArrayList<>();
         for (QuestionDocument questionDocument : surveyDocument.getQuestionDocumentList()) {
@@ -535,14 +541,14 @@ public class SurveyAnalyzeService {
                 aprioriAnalyzeDto.setQuestionTitle(aprioriAnalyze.getQuestionTitle());
 
                 List<ChoiceAnalyzeDto> choiceDtos = new ArrayList<>();
-                    for (ChoiceAnalyze choice : aprioriAnalyze.getChoiceAnalyzeList()) {
-                        ChoiceAnalyzeDto choiceDto = new ChoiceAnalyzeDto();
-                        choiceDto.setId(choice.getId());
-                        choiceDto.setChoiceTitle(choice.getChoiceTitle());
-                        choiceDto.setSupport(choice.getSupport());
-                        choiceDto.setQuestionTitle(choice.getQuestionTitle());
-                        choiceDtos.add(choiceDto);
-                    }
+                for (ChoiceAnalyze choice : aprioriAnalyze.getChoiceAnalyzeList()) {
+                    ChoiceAnalyzeDto choiceDto = new ChoiceAnalyzeDto();
+                    choiceDto.setId(choice.getId());
+                    choiceDto.setChoiceTitle(choice.getChoiceTitle());
+                    choiceDto.setSupport(choice.getSupport());
+                    choiceDto.setQuestionTitle(choice.getQuestionTitle());
+                    choiceDtos.add(choiceDto);
+                }
                 aprioriAnalyzeDto.setChoiceAnalyzeList(choiceDtos);
                 aprioriAnalyzeDtos.add(aprioriAnalyzeDto);
             }
