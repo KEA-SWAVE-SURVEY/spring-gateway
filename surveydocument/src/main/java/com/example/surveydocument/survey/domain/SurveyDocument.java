@@ -14,6 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 public class SurveyDocument {
 
+    //todo : soft delete 쿼리 조회 되게 만들어주기
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "survey_document_id")
     private Long id;
@@ -25,15 +27,18 @@ public class SurveyDocument {
     private String description;
     @Column(name = "accept_response")
     private boolean acceptResponse;
-    @CreationTimestamp @Temporal(TemporalType.TIMESTAMP) @Column(name = "survey_start_date")
-    private Date startDate;
-    @CreationTimestamp @Temporal(TemporalType.TIMESTAMP) @Column(name = "survey_deadline")
-    private Date deadline;
+
     @Column(name = "url")
     private String url;
     @Column(name = "answer_count")
     private int countAnswer;
 
+    private boolean isDeleted = false;
+
+    @OneToOne
+    @JoinColumn(name = "Date_id")
+    private DateManagement date;
+    
     @Column(name = "reliability")
     private Boolean reliability;
 
@@ -41,27 +46,27 @@ public class SurveyDocument {
     private String font;
 
     @Column(name = "size")
-    private int size;
+    private int fontSize;
 
     @Column(name = "backcolor")
-    private String backcolor;
+    private String backColor;
 
 
 //    @Column(name="survey_design")
 //    @OneToOne(mappedBy = "design_id",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 //    private SurveyDesign surveyDesign;
 
+
     @Column(name = "content")
     @OneToMany(mappedBy = "surveyDocumentId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<QuestionDocument> questionDocumentList;
-
     @ManyToOne
     @JsonIgnore // 순환참조 방지
     @JoinColumn(name = "survey_id")
     private Survey survey;
 
     @Builder
-    public SurveyDocument(int countAnswer, List<SurveyAnswer> surveyAnswerList, Survey survey, String title, int type,Boolean reliability, String description, String font,int size,String backcolor,List<QuestionDocument> questionDocumentList) {
+    public SurveyDocument(int countAnswer, List<SurveyAnswer> surveyAnswerList, Survey survey, String title, int type,Boolean reliability, String description, String font,int fontSize,String backColor,List<QuestionDocument> questionDocumentList) {
         this.survey = survey;
         this.title = title;
         this.type = type;
@@ -69,8 +74,8 @@ public class SurveyDocument {
         this.questionDocumentList = questionDocumentList;
         this.reliability=reliability;
         this.font=font;
-        this.size=size;
-        this.backcolor=backcolor;
+        this.fontSize=fontSize;
+        this.backColor=backColor;
 //        this.surveyAnswerList = surveyAnswerList;
         this.countAnswer = countAnswer;
     }

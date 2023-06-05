@@ -8,9 +8,11 @@ import com.example.surveyanswer.survey.request.ReliabilityChoice;
 import com.example.surveyanswer.survey.request.ReliabilityQuestion;
 import com.example.surveyanswer.survey.request.ReliabilityQuestionRequest;
 import com.example.surveyanswer.survey.response.*;
+import jakarta.servlet.http.HttpServletRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
+import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -218,8 +220,8 @@ public class SurveyAnswerService {
         surveyDetailDto.setDescription(surveyDocument.getDescription());
 
         surveyDetailDto.setFont(surveyDocument.getFont());
-        surveyDetailDto.setSize(surveyDocument.getSize());
-        surveyDetailDto.setBackcolor(surveyDocument.getBackcolor());
+        surveyDetailDto.setFontSize(surveyDocument.getFontSize());
+        surveyDetailDto.setBackColor(surveyDocument.getBackColor());
         surveyDetailDto.setReliability(surveyDocument.getReliability());
 
         List<QuestionDetailDto> questionDtos = new ArrayList<>();

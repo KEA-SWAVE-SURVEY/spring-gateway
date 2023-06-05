@@ -437,8 +437,8 @@ public class SurveyAnalyzeService {
         surveyDetailDto.setDescription(surveyDocument.getDescription());
         surveyDetailDto.setCountAnswer(surveyDocument.getCountAnswer());
         surveyDetailDto.setFont(surveyDocument.getFont());
-        surveyDetailDto.setSize(surveyDocument.getSize());
-        surveyDetailDto.setBackcolor(surveyDocument.getBackcolor());
+        surveyDetailDto.setFontSize(surveyDocument.getFontSize());
+        surveyDetailDto.setBackColor(surveyDocument.getBackColor());
 
         List<QuestionDetailDto> questionDtos = new ArrayList<>();
         for (QuestionDocument questionDocument : surveyDocument.getQuestionDocumentList()) {

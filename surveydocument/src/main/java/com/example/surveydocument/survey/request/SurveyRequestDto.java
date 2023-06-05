@@ -16,19 +16,18 @@ public class SurveyRequestDto {
     List<QuestionRequestDto> questionRequest;
     Boolean reliability;
     String font;
-    int size;
-    String backcolor;
+    int fontSize;
+    String backColor;
 
     //    @ConstructorProperties({"title", "description", "type", "questionRequest"})
     @Builder
-    public SurveyRequestDto(String title, String description, int type,Boolean reliability,String font, int size, String backcolor, List<QuestionRequestDto> questionRequest) {
-        this.title = title;
+    public SurveyRequestDto(String title, String description, int type,Boolean reliability,String font, int fontSize, String backColor, List<QuestionRequestDto> questionRequest) {        this.title = title;
         this.description = description;
         this.type = type;
         this.reliability=reliability;
         this.font=font;
-        this.backcolor=backcolor;
-        this.size=size;
+        this.backColor=backColor;
+        this.fontSize=fontSize;
         this.questionRequest = questionRequest;
     }
 }

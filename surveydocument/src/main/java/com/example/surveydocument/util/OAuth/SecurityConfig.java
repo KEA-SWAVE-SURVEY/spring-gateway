@@ -1,6 +1,5 @@
 package com.example.surveydocument.util.OAuth;
 
-import com.example.surveydocument.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -24,8 +23,6 @@ import org.springframework.web.filter.CorsFilter;
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class SecurityConfig{
 
-    @Autowired
-    UserRepository userRepository;
 
     public static final String FRONT_URL = "http://localhost:3000";
 

@@ -20,7 +20,7 @@ public class SurveyDetailDto implements Serializable {
     private List<QuestionDetailDto> questionList;
     Boolean reliability;
     String font;
-    int size;
-    String backcolor;
+    int fontSize;
+    String backColor;
     // getter, setter 생략
 }
